@@ -1,5 +1,5 @@
-# portals-ecommerce-demo
-E-commerce Demo App using Ionic Portals
+# live-updates-ecommerce-demo
+E-commerce Demo App using Ionic Portals with Live Updates
 
 This is an example application built in iOS and Android. Both are using the same web resources for their Portals.
 

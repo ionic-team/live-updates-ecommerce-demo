@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   IonApp,
-  IonButton,
   IonContent,
   IonHeader,
   IonPage,
@@ -42,7 +41,7 @@ import PubSubTest from './pages/PubSubTest/PubSubTest';
 
 interface HomeProps {}
 
-const Home: React.FC<HomeProps> = () => {
+export const Home: React.FC<HomeProps> = () => {
   return (
     <IonPage>
       <IonHeader>

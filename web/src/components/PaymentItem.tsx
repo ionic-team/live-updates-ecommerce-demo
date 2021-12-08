@@ -2,12 +2,11 @@ import {
   IonItem,
   IonCheckbox,
   IonLabel,
-  IonChip,
   IonButton,
   useIonRouter,
 } from '@ionic/react';
 import React from 'react';
-import { CreditCard, User } from '../models';
+import { CreditCard } from '../models';
 
 interface PaymentItemProps {
   creditCard: CreditCard;

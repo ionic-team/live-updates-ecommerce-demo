@@ -11,8 +11,8 @@ import java.util.HashMap;
 import io.ionic.demo.ecommerce.data.ShoppingCart;
 import io.ionic.demo.ecommerce.plugins.ShopAPIPlugin;
 import io.ionic.demo.ecommerce.portals.FadePortalFragment;
+import io.ionic.liveupdates.LiveUpdate;
 import io.ionic.portals.PortalManager;
-import io.ionic.portals.PortalsPlugin;
 
 /**
  * The parent Application Class for the E-Commerce app.
@@ -71,10 +71,14 @@ public class EcommerceApp extends Application {
         // Register Portals
         // PortalManager.register("YOUR_KEY_HERE");
 
+        // Create a Live Updates profile that all 3 portals use, since they all use the same SPA
+        LiveUpdate sharedLiveUpdateConfig = new LiveUpdate("256afd66", "production");
+
         // Checkout Portal
         PortalManager.newPortal("checkout")
                 .setStartDir("webapp")
                 .setPlugins(Arrays.asList(ShopAPIPlugin.class))
+                .setLiveUpdateConfig(getContext(), sharedLiveUpdateConfig)
                 .create();
 
         // Help Portal
@@ -85,6 +89,7 @@ public class EcommerceApp extends Application {
                 .setInitialContext(initialContext)
                 .setPlugins(Arrays.asList(ShopAPIPlugin.class))
                 .setPortalFragmentType(FadePortalFragment.class)
+                .setLiveUpdateConfig(getContext(), sharedLiveUpdateConfig)
                 .create();
 
         // Profile Portal
@@ -95,6 +100,7 @@ public class EcommerceApp extends Application {
                 .addPlugin(ShopAPIPlugin.class)
                 .addPlugin(CameraPlugin.class)
                 .setInitialContext(initialContextProfile)
+                .setLiveUpdateConfig(getContext(), sharedLiveUpdateConfig)
                 .create();
     }
 }

@@ -72,8 +72,6 @@ public class EcommerceApp extends Application {
         // Register Portals
         // PortalManager.register("YOUR_KEY_HERE");
 
-        LiveUpdateManager.reset(getContext());
-
         // Create a Live Updates profile that all 3 portals use, since they all use the same SPA
         LiveUpdate sharedLiveUpdateConfig = new LiveUpdate("256afd66", "production");
 

@@ -12,6 +12,7 @@ import io.ionic.demo.ecommerce.data.ShoppingCart;
 import io.ionic.demo.ecommerce.plugins.ShopAPIPlugin;
 import io.ionic.demo.ecommerce.portals.FadePortalFragment;
 import io.ionic.liveupdates.LiveUpdate;
+import io.ionic.liveupdates.LiveUpdateManager;
 import io.ionic.portals.PortalManager;
 
 /**
@@ -70,6 +71,8 @@ public class EcommerceApp extends Application {
 
         // Register Portals
         // PortalManager.register("YOUR_KEY_HERE");
+
+        LiveUpdateManager.reset(getContext());
 
         // Create a Live Updates profile that all 3 portals use, since they all use the same SPA
         LiveUpdate sharedLiveUpdateConfig = new LiveUpdate("256afd66", "production");

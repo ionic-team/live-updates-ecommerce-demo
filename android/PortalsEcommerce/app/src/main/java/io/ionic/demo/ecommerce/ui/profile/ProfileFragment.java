@@ -48,6 +48,12 @@ public class ProfileFragment extends PortalFragment {
         }
     }
 
+    /**
+     * Start a repeating task that checks the status of the live update every 500ms.
+     * If an update for the web app is downloaded, refresh the
+     *
+     * @param liveUpdate a live update instance to monitor the status of.
+     */
     private void reloadOnFinish(LiveUpdate liveUpdate) {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleWithFixedDelay(() -> {
@@ -56,8 +62,7 @@ public class ProfileFragment extends PortalFragment {
                 // App is finished updating, reload the portal
                 if (getContext() != null) {
                     // Force reload portal
-                    Log.d("LiveUpdates", "RELOADING!!");
-                    Log.d("LiveUpdates", "RELOADING!!");
+                    Log.d("LiveUpdates", "Reloading profile page with downloaded update!");
                     reload();
                 }
                 throw new RuntimeException("Successful");
@@ -65,7 +70,7 @@ public class ProfileFragment extends PortalFragment {
                 Log.e("LiveUpdates", "Live update failed or canceled, reload not triggered.");
                 throw new RuntimeException("Failed or Canceled");
             } else if (appState == AppState.CHECKED) {
-                Log.d("LiveUpdates", "No app update!");
+                Log.d("LiveUpdates", "No update to the profile page. No reload needed.");
                 throw new RuntimeException("Checked");
             }
         }, 0, 500, TimeUnit.MILLISECONDS);

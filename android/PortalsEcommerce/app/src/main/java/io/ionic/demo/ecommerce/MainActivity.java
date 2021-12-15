@@ -20,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import io.ionic.demo.ecommerce.data.model.Product;
 import io.ionic.demo.ecommerce.plugins.ShopAPIPlugin;
 import io.ionic.demo.ecommerce.ui.product.HelpFragment;
+import io.ionic.liveupdates.LiveUpdateManager;
 
 /**
  * The parent Activity used for the E-Commerce app.
@@ -109,6 +110,18 @@ public class MainActivity extends AppCompatActivity {
                 // not used
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // If it has been more than 6 hours since last update check, sync now.
+        long lastUpdateTime = LiveUpdateManager.getLastSync(this);
+        long sixHours = 6 * 60 * 60 * 1000;
+        if (lastUpdateTime < (System.currentTimeMillis() - sixHours)) {
+            LiveUpdateManager.sync(this);
+        }
     }
 
     @Override

@@ -11,7 +11,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import io.ionic.demo.ecommerce.ui.cart.CartFragment;
 import io.ionic.demo.ecommerce.ui.profile.ProfileFragment;
 import io.ionic.demo.ecommerce.ui.store.StoreContainerFragment;
-import io.ionic.demo.ecommerce.ui.store.StoreFragment;
+import io.ionic.demo.ecommerce.ui.liveupdates.SettingsFragment;
 
 public class PageAdapter extends FragmentStateAdapter {
 
@@ -44,6 +44,9 @@ public class PageAdapter extends FragmentStateAdapter {
             case 2:
                 fragment = ProfileFragment.newInstance();
                 break;
+            case 3:
+                fragment = SettingsFragment.newInstance(context);
+                break;
         }
 
         return fragment;
@@ -51,6 +54,6 @@ public class PageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }

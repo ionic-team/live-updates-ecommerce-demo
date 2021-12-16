@@ -4,11 +4,8 @@ import { IonButton, IonContent, IonPage } from '@ionic/react';
 const DevPage: React.FC = () => (
   <IonPage>
     <IonContent>
-      <IonButton expand="block" href="/user">
-        Profile Portal
-      </IonButton>
-      <IonButton expand="block" href="/checkout">
-        Checkout Modal Portal
+      <IonButton expand="block" href="/help">
+        Help Portal
       </IonButton>
     </IonContent>
   </IonPage>

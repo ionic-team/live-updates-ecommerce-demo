@@ -86,7 +86,7 @@ public class EcommerceApp extends Application {
         HashMap<String, String> initialContext = new HashMap<>();
         initialContext.put("startingRoute", "/help");
         PortalManager.newPortal("help")
-                .setStartDir("webapp")
+                .setStartDir("webapp_help")
                 .setInitialContext(initialContext)
                 .setPlugins(Arrays.asList(ShopAPIPlugin.class))
                 .setPortalFragmentType(FadePortalFragment.class)

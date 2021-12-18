@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let checkoutPortal = Portal("checkout", "portals/shopwebapp")
         PortalManager.addPortal(checkoutPortal)
         
-        let helpPortal = Portal("help", "portals/shopwebapp")
+        let helpPortal = Portal("help", "portals/shopwebapphelp")
         PortalManager.addPortal(helpPortal)
         
         let userPortal = Portal("user", "portals/shopwebapp")

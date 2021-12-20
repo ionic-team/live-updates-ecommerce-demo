@@ -1,7 +1,6 @@
 package io.ionic.demo.ecommerce;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -11,7 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import io.ionic.demo.ecommerce.ui.cart.CartFragment;
 import io.ionic.demo.ecommerce.ui.profile.ProfileFragment;
 import io.ionic.demo.ecommerce.ui.store.StoreContainerFragment;
-import io.ionic.demo.ecommerce.ui.liveupdates.SettingsFragment;
+import io.ionic.demo.ecommerce.ui.settings.SettingsFragment;
 
 public class PageAdapter extends FragmentStateAdapter {
 

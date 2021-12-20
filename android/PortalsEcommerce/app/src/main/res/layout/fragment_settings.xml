@@ -61,6 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:text="Last checked:"
                 android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -70,6 +71,7 @@
                 android:id="@+id/web_time_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:text="-"
                 android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -110,6 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:text="Last checked:"
                 android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -119,6 +122,7 @@
                 android:id="@+id/web_help_time_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:text="-"
                 android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent"

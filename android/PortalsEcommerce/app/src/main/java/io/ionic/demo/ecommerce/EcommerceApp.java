@@ -1,7 +1,13 @@
 package io.ionic.demo.ecommerce;
 
+import static io.ionic.demo.ecommerce.ui.settings.SettingsFragment.CHANNEL;
+import static io.ionic.demo.ecommerce.ui.settings.SettingsFragment.PRODUCTION;
+import static io.ionic.demo.ecommerce.ui.settings.SettingsFragment.SETTINGS;
+
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.capacitorjs.plugins.camera.CameraPlugin;
 
@@ -11,6 +17,7 @@ import java.util.HashMap;
 import io.ionic.demo.ecommerce.data.ShoppingCart;
 import io.ionic.demo.ecommerce.plugins.ShopAPIPlugin;
 import io.ionic.demo.ecommerce.portals.FadePortalFragment;
+import io.ionic.demo.ecommerce.ui.settings.SettingsFragment;
 import io.ionic.liveupdates.LiveUpdate;
 import io.ionic.liveupdates.LiveUpdateManager;
 import io.ionic.portals.PortalManager;
@@ -72,8 +79,14 @@ public class EcommerceApp extends Application {
         // Register Portals
         // PortalManager.register("YOUR_KEY_HERE");
 
+        // Get channel
+        SharedPreferences sharedPrefs = getContext().getSharedPreferences(SETTINGS, Context.MODE_PRIVATE);
+        String channel = sharedPrefs.getString(CHANNEL, PRODUCTION);
+
+        Log.d("LiveUpdates", "Loading Portals with Live Update channel: " + channel);
+
         // Create a Live Updates profile that all 3 portals use, since they all use the same SPA
-        LiveUpdate sharedLiveUpdateConfig = new LiveUpdate("256afd66", "production");
+        LiveUpdate sharedLiveUpdateConfig = new LiveUpdate("256afd66", channel);
 
         // Checkout Portal
         PortalManager.newPortal("checkout")

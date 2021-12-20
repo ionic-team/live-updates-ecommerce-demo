@@ -1,11 +1,14 @@
 package io.ionic.demo.ecommerce.ui.settings;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +36,13 @@ import io.ionic.liveupdates.LiveUpdateManager;
  */
 public class SettingsFragment extends Fragment {
 
+    public static final String SETTINGS = "settings";
+    public static final String CHANNEL = "channel";
+    public static final String PRODUCTION = "production";
+    public static final String DEVELOPMENT = "development";
+
+    String channel = "production";
+
     private SettingsViewModel settingsViewModel;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
 
@@ -44,6 +54,24 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        SharedPreferences sharedPrefs = getContext().getSharedPreferences(SETTINGS, Context.MODE_PRIVATE);
+        channel = sharedPrefs.getString(CHANNEL, PRODUCTION);
+
+        RadioGroup radioGroup = root.findViewById(R.id.channel_options);
+        if (channel.equalsIgnoreCase(PRODUCTION)) {
+            radioGroup.check(R.id.radio_channel_production);
+        } else {
+            radioGroup.check(R.id.radio_channel_development);
+        }
+
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radio_channel_production) {
+                sharedPrefs.edit().putString(CHANNEL, PRODUCTION).apply();
+            } else {
+                sharedPrefs.edit().putString(CHANNEL, DEVELOPMENT).apply();
+            }
+        });
 
         Button syncButton = root.findViewById(R.id.test_sync_button);
         syncButton.setOnClickListener(v -> {

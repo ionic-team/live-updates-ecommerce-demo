@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -31,12 +33,11 @@ import io.ionic.liveupdates.LiveUpdateManager;
  */
 public class SettingsFragment extends Fragment {
 
-    private MainActivity context;
     private SettingsViewModel settingsViewModel;
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
 
-    public static SettingsFragment newInstance(MainActivity context) {
+    public static SettingsFragment newInstance() {
         SettingsFragment settingsFragment = new SettingsFragment();
-        settingsFragment.setContext(context);
         return settingsFragment;
     }
 
@@ -61,11 +62,17 @@ public class SettingsFragment extends Fragment {
 
         settingsViewModel.getPortalStatusText().observe(getViewLifecycleOwner(), portalStatusText -> {
             profileCartPortalStatus.setText(portalStatusText.get("256afd66"));
-            helpPortalStatus.setText(portalStatusText.get("256afd66"));
+            helpPortalStatus.setText("N/A");
         });
 
+        TextView profileCartPortalSyncTime = root.findViewById(R.id.web_time_label);
+        TextView helpPortalSyncTime = root.findViewById(R.id.web_help_time_label);
+
         settingsViewModel.getPortalsLastSyncTime().observe(getViewLifecycleOwner(), portalLastSyncTime -> {
-            Log.d("LiveUpdates", "Last sync time for 256afd66 " + portalLastSyncTime.get("256afd66"));
+            Long webPortalLastSyncTime = portalLastSyncTime.get("256afd66");
+            if (webPortalLastSyncTime != null && webPortalLastSyncTime != -1) {
+                profileCartPortalSyncTime.setText(formatter.format(webPortalLastSyncTime));
+            }
         });
 
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -74,8 +81,11 @@ public class SettingsFragment extends Fragment {
                 Map<String, LiveUpdate> apps = LiveUpdateManager.getApps();
                 for (Map.Entry<String,LiveUpdate> appEntry : apps.entrySet()) {
                     if (getContext() != null) {
-                        settingsViewModel.setPortalStatus(appEntry.getKey(), appEntry.getValue().getAppState().toString());
-                        settingsViewModel.setPortalLastSyncTime(appEntry.getKey(), LiveUpdateManager.getLastSync(getContext(), appEntry.getKey()));
+                        String appState = appEntry.getValue().getAppState().toString();
+                        if (!profileCartPortalStatus.getText().toString().equalsIgnoreCase(appState)) {
+                            settingsViewModel.setPortalStatus(appEntry.getKey(), appState);
+                            settingsViewModel.setPortalLastSyncTime(appEntry.getKey(), LiveUpdateManager.getLastSync(getContext(), appEntry.getKey()));
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -84,9 +94,5 @@ public class SettingsFragment extends Fragment {
         }, 0, 200, TimeUnit.MILLISECONDS);
 
         return root;
-    }
-
-    private void setContext(MainActivity context) {
-        this.context = context;
     }
 }

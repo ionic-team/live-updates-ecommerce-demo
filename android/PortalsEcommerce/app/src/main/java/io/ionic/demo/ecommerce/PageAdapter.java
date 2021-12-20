@@ -44,7 +44,7 @@ public class PageAdapter extends FragmentStateAdapter {
                 fragment = ProfileFragment.newInstance();
                 break;
             case 3:
-                fragment = SettingsFragment.newInstance(context);
+                fragment = SettingsFragment.newInstance();
                 break;
         }
 

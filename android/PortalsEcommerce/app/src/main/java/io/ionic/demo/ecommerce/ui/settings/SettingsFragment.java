@@ -49,11 +49,17 @@ public class SettingsFragment extends Fragment {
             LiveUpdateManager.sync(getContext());
         });
 
+        Button deleteButton = root.findViewById(R.id.test_delete_button);
+        deleteButton.setOnClickListener(v -> {
+            settingsViewModel.clearPortalStatus();
+            LiveUpdateManager.reset(getContext(), false);
+            settingsViewModel.setPortalStatus("256afd66", "CLEARED");
+        });
+
         TextView profileCartPortalStatus = root.findViewById(R.id.web_status_label);
         TextView helpPortalStatus = root.findViewById(R.id.web_help_status_label);
 
         settingsViewModel.getPortalStatusText().observe(getViewLifecycleOwner(), portalStatusText -> {
-            Log.d("LiveUpdates", "Observed update for 256afd66 " + portalStatusText.get("256afd66"));
             profileCartPortalStatus.setText(portalStatusText.get("256afd66"));
             helpPortalStatus.setText(portalStatusText.get("256afd66"));
         });

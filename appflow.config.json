@@ -1,0 +1,14 @@
+{
+  "apps": [
+   {
+     "appId": "a81b2440",
+     "root": "web_help",
+     "dependencyInstallCommand": "npm install"
+   },
+    {
+     "appId": "186b544f",
+     "root": "web",
+     "dependencyInstallCommand": "npm install"
+    }
+  ]
+}

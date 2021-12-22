@@ -82,24 +82,30 @@ public class SettingsFragment extends Fragment {
         deleteButton.setOnClickListener(v -> {
             settingsViewModel.clearPortalStatus();
             LiveUpdateManager.reset(getContext(), false);
-            settingsViewModel.setPortalStatus("256afd66", "CLEARED");
+            settingsViewModel.setPortalStatus("186b544f", "CLEARED");
+            settingsViewModel.setPortalStatus("a81b2440", "CLEARED");
         });
 
         TextView profileCartPortalStatus = root.findViewById(R.id.web_status_label);
         TextView helpPortalStatus = root.findViewById(R.id.web_help_status_label);
 
         settingsViewModel.getPortalStatusText().observe(getViewLifecycleOwner(), portalStatusText -> {
-            profileCartPortalStatus.setText(portalStatusText.get("256afd66"));
-            helpPortalStatus.setText("N/A");
+            profileCartPortalStatus.setText(portalStatusText.get("186b544f"));
+            helpPortalStatus.setText(portalStatusText.get("a81b2440"));
         });
 
         TextView profileCartPortalSyncTime = root.findViewById(R.id.web_time_label);
         TextView helpPortalSyncTime = root.findViewById(R.id.web_help_time_label);
 
         settingsViewModel.getPortalsLastSyncTime().observe(getViewLifecycleOwner(), portalLastSyncTime -> {
-            Long webPortalLastSyncTime = portalLastSyncTime.get("256afd66");
+            Long webPortalLastSyncTime = portalLastSyncTime.get("186b544f");
             if (webPortalLastSyncTime != null && webPortalLastSyncTime != -1) {
                 profileCartPortalSyncTime.setText(formatter.format(webPortalLastSyncTime));
+            }
+
+            Long helpPortalLastSyncTime = portalLastSyncTime.get("a81b2440");
+            if (helpPortalLastSyncTime != null && helpPortalLastSyncTime != -1) {
+                helpPortalSyncTime.setText(formatter.format(helpPortalLastSyncTime));
             }
         });
 
@@ -110,7 +116,8 @@ public class SettingsFragment extends Fragment {
                 for (Map.Entry<String,LiveUpdate> appEntry : apps.entrySet()) {
                     if (getContext() != null) {
                         String appState = appEntry.getValue().getAppState().toString();
-                        if (!profileCartPortalStatus.getText().toString().equalsIgnoreCase(appState)) {
+                        if (!profileCartPortalStatus.getText().toString().equalsIgnoreCase(appState)
+                                || !helpPortalStatus.getText().toString().equalsIgnoreCase(appState)) {
                             settingsViewModel.setPortalStatus(appEntry.getKey(), appState);
                             settingsViewModel.setPortalLastSyncTime(appEntry.getKey(), LiveUpdateManager.getLastSync(getContext(), appEntry.getKey()));
                         }

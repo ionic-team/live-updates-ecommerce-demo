@@ -15,4 +15,6 @@
     <string name="estimated_total">Estimated Total</string>
     <string name="standard_shipping">Standard - Free</string>
     <string name="empty_cart">Your cart is empty</string>
+    <string name="liveupdate_status">Web App Status</string>
+    <string name="liveupdate_testing">Live Updates Testing</string>
 </resources>

@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_profile_material"
         android:title="@string/title_profile" />
 
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_cloud_download_material"
+        android:title="@string/title_profile" />
+
 </menu>

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(pageAdapter);
         viewPager.setUserInputEnabled(false);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(4);
 
         tabLayout = findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, viewPager, true, false, (tab, position) -> {
@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 2:
                     tab.setIcon(R.drawable.ic_profile_material);
+                    break;
+                case 3:
+                    tab.setIcon(R.drawable.ic_cloud_download_material);
                     break;
             }
         }).attach();
@@ -96,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
                         hideUpButton();
                         showHelpMenu(false);
                         setTitle("Profile");
+                        break;
+                    case 3:
+                        getSupportActionBar().show();
+                        hideUpButton();
+                        showHelpMenu(false);
+                        setTitle("Live Update Settings");
                         break;
                 }
             }

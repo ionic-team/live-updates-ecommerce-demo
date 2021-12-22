@@ -19,6 +19,8 @@ public class SettingsViewModel extends ViewModel {
      */
     private final MutableLiveData<HashMap<String, Long>> portalsLastSyncTime;
 
+    private final MutableLiveData<Boolean> resetProfile = new MutableLiveData<>(false);
+
     /**
      * Constructs a settings view model.
      */
@@ -40,6 +42,10 @@ public class SettingsViewModel extends ViewModel {
         HashMap<String, Long> updateMap = portalsLastSyncTime.getValue();
         updateMap.put(appId, time);
         portalsLastSyncTime.postValue(updateMap);
+    }
+
+    public void setResetProfile(boolean reset) {
+        resetProfile.postValue(reset);
     }
 
     public void clearPortalStatus() {
@@ -64,6 +70,10 @@ public class SettingsViewModel extends ViewModel {
 
     public LiveData<HashMap<String, Long>> getPortalsLastSyncTime() {
         return portalsLastSyncTime;
+    }
+
+    public LiveData<Boolean> getResetProfile() {
+        return resetProfile;
     }
 
 }

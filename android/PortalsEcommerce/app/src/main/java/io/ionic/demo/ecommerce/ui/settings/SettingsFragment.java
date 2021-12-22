@@ -52,7 +52,7 @@ public class SettingsFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
+        settingsViewModel = new ViewModelProvider(requireActivity()).get(SettingsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
         SharedPreferences sharedPrefs = getContext().getSharedPreferences(SETTINGS, Context.MODE_PRIVATE);
@@ -84,6 +84,7 @@ public class SettingsFragment extends Fragment {
             LiveUpdateManager.reset(getContext(), false);
             settingsViewModel.setPortalStatus("186b544f", "CLEARED");
             settingsViewModel.setPortalStatus("a81b2440", "CLEARED");
+            settingsViewModel.setResetProfile(true);
         });
 
         TextView profileCartPortalStatus = root.findViewById(R.id.web_status_label);

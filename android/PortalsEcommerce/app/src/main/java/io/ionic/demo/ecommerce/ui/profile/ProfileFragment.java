@@ -3,6 +3,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.Executor;
@@ -11,6 +14,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import io.ionic.demo.ecommerce.ui.settings.SettingsViewModel;
 import io.ionic.liveupdates.AppState;
 import io.ionic.liveupdates.LiveUpdate;
 import io.ionic.portals.Portal;
@@ -35,6 +39,15 @@ public class ProfileFragment extends PortalFragment {
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(false);
+
+        SettingsViewModel settingsViewModel = new ViewModelProvider(requireActivity()).get(SettingsViewModel.class);
+        settingsViewModel.getResetProfile().observe(getViewLifecycleOwner(), resetProfile -> {
+            if (resetProfile) {
+                reload();
+                getBridge().setServerAssetPath(getPortal().getStartDir()); // temp until fixed in Portals lib
+                settingsViewModel.setResetProfile(false);
+            }
+        });
 
         Portal profilePortal = getPortal();
         if (profilePortal != null) {

@@ -44,7 +44,6 @@ public class ProfileFragment extends PortalFragment {
         settingsViewModel.getResetProfile().observe(getViewLifecycleOwner(), resetProfile -> {
             if (resetProfile) {
                 reload();
-                getBridge().setServerAssetPath(getPortal().getStartDir()); // temp until fixed in Portals lib
                 settingsViewModel.setResetProfile(false);
             }
         });

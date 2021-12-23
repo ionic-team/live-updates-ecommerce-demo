@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -30,6 +31,8 @@ import io.ionic.demo.ecommerce.R;
 import io.ionic.liveupdates.AppState;
 import io.ionic.liveupdates.LiveUpdate;
 import io.ionic.liveupdates.LiveUpdateManager;
+import io.ionic.liveupdates.network.FailStep;
+import io.ionic.liveupdates.network.SyncCallback;
 
 /**
  * Displays products to be purchased.
@@ -75,7 +78,18 @@ public class SettingsFragment extends Fragment {
 
         Button syncButton = root.findViewById(R.id.test_sync_button);
         syncButton.setOnClickListener(v -> {
-            LiveUpdateManager.sync(getContext());
+            LiveUpdateManager.sync(getContext(), new String[] {"186b544f", "a81b2440"} ,true, new SyncCallback() {
+
+                @Override
+                public void onSyncComplete() {
+                    settingsViewModel.setResetProfile(true);
+                }
+
+                @Override
+                public void onAppComplete(@NonNull LiveUpdate liveUpdate, @Nullable FailStep failStep) {
+                    Log.d("LiveUpdates", "App " + liveUpdate.getAppId() + " finished syncing");
+                }
+            });
         });
 
         Button deleteButton = root.findViewById(R.id.test_delete_button);

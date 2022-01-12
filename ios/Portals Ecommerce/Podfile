@@ -4,8 +4,9 @@ use_frameworks!
 
 def portals_pods
     pod 'Capacitor'
-    pod 'IonicPortals'
     pod "CapacitorCamera"
+    pod 'IonicPortals', :path => '../../../ionic-portals/ios/IonicPortals'
+    pod 'IonicLiveUpdates', :path => '../../../live-updates-sdk/ios/LiveUpdatesSDK'
 end
 
 target 'Ecommerce' do

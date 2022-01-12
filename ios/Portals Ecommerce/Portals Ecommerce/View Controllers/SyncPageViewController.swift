@@ -53,6 +53,10 @@ class SyncPageViewController: UIViewController {
     
     @IBAction func deleteLiveUpdates(_ sender: Any) {
         LiveUpdateManager.reset()
+        self.profileAppUILabel.text = "NOT UPDATED"
+        self.lastCheckProfileAppUILabel.text = "N/A"
+        self.helpAppUILabel.text = "NOT UPDATED"
+        self.lastCheckHelpAppUILabel.text = "N/A"
     }
     
     @IBAction func syncLiveUpdates(_ sender: Any) {

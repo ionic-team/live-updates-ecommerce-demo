@@ -1,5 +1,6 @@
 import UIKit
 import IonicPortals
+import IonicLiveUpdates
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -7,16 +8,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         // Register Portals
-        // PortalManager.register("YOUR_KEY_HERE");
-        
-        // Setup Ionic Portals
-        let checkoutPortal = Portal("checkout", "portals/shopwebapp")
+        PortalManager.register(PORTALS_KEY)
+
+        let profileId = "186b544f"
+        let helpId = "a81b2440"
+
+        // Checkout Live Update
+        let checkoutLiveUpdate = LiveUpdate(appId: profileId)
+        let checkoutPortal = PortalManager.newPortal("checkout")
+            .setStartDir("portals/shopwebapp")
+            .setLiveUpdateConfig(liveUpdateConfig: checkoutLiveUpdate, updateOnAppLoad: false)
+            .create()
         PortalManager.addPortal(checkoutPortal)
         
-        let helpPortal = Portal("help", "portals/shopwebapphelp")
+        // Help Live Update
+        let helpLiveUpdate = LiveUpdate(appId: helpId)
+        let helpPortal = PortalManager.newPortal("help")
+            .setStartDir("portals/shopwebapphelp")
+            .setLiveUpdateConfig(liveUpdateConfig: helpLiveUpdate, updateOnAppLoad: false)
+            .create()
         PortalManager.addPortal(helpPortal)
         
-        let userPortal = Portal("user", "portals/shopwebapp")
+        // User Live Update
+        let userLiveUpdate = LiveUpdate(appId: profileId)
+        let userPortal = PortalManager.newPortal("user")
+            .setStartDir("portals/shopwebapp")
+            .setLiveUpdateConfig(liveUpdateConfig: userLiveUpdate, updateOnAppLoad: false)
+            .create()
         PortalManager.addPortal(userPortal)
         
         return true

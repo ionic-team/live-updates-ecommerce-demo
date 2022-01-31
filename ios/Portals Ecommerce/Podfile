@@ -4,8 +4,8 @@ use_frameworks!
 
 def portals_pods
     pod 'Capacitor'
-    pod 'IonicPortals'
     pod "CapacitorCamera"
+    pod 'IonicPortals'
 end
 
 target 'Ecommerce' do

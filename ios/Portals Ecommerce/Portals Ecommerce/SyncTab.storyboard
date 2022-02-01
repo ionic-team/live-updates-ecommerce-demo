@@ -159,6 +159,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmh-dg-BjZ">
+                                <rect key="frame" x="252" y="412" width="146" height="25"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Reset NSUserDefaults" buttonSize="small">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="resetNsUserDefaults:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="P8O-XD-tfX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -167,13 +178,13 @@
                             <constraint firstItem="gp3-18-u7w" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="1Jm-WQ-Oyw"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bTS-lJ-doG" secondAttribute="trailing" constant="16" id="2MQ-qC-DZH"/>
                             <constraint firstItem="yvk-rD-ClY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="4Qk-La-gYM"/>
+                            <constraint firstItem="fOh-M8-qC8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="4qZ-kD-L1g"/>
                             <constraint firstItem="bVP-qK-jOr" firstAttribute="top" secondItem="yI0-qg-A1R" secondAttribute="bottom" constant="8" symbolic="YES" id="4vG-3V-VWO"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="NXd-oM-I4i" secondAttribute="trailing" constant="16" id="60z-EL-O89"/>
                             <constraint firstItem="iWR-Fj-bic" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="8Zd-BE-O97"/>
                             <constraint firstItem="aAI-Fu-8AE" firstAttribute="top" secondItem="M6J-uR-C4k" secondAttribute="bottom" constant="8" symbolic="YES" id="GMz-SA-Npj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Wdg-GD-i7X" secondAttribute="trailing" constant="16" id="LMt-DQ-PVx"/>
                             <constraint firstItem="8dA-61-fKJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="NtM-6l-LF9"/>
-                            <constraint firstItem="fOh-M8-qC8" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="16" id="PMq-pg-jf4"/>
                             <constraint firstItem="Vxu-ZD-xkl" firstAttribute="top" secondItem="iWR-Fj-bic" secondAttribute="bottom" constant="8" symbolic="YES" id="QE1-Ob-XAk"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="uhk-si-bsE" secondAttribute="trailing" constant="16" id="SkF-b4-Do9"/>
                             <constraint firstItem="9ZE-SI-S0j" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Yws-Db-xhK"/>
@@ -189,6 +200,7 @@
                             <constraint firstItem="chA-Ro-3RV" firstAttribute="top" secondItem="Nqn-48-DDT" secondAttribute="bottom" constant="8" symbolic="YES" id="fzh-Bh-uC2"/>
                             <constraint firstItem="iWR-Fj-bic" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="gqD-8q-YLY"/>
                             <constraint firstItem="6iJ-3G-6sd" firstAttribute="top" secondItem="l6r-SI-YZx" secondAttribute="bottom" constant="8" symbolic="YES" id="hvt-lt-c3R"/>
+                            <constraint firstItem="Tmh-dg-BjZ" firstAttribute="top" secondItem="9ZE-SI-S0j" secondAttribute="bottom" constant="8" id="iqw-W6-E3U"/>
                             <constraint firstItem="uhk-si-bsE" firstAttribute="top" secondItem="chA-Ro-3RV" secondAttribute="bottom" constant="8" symbolic="YES" id="ixL-wO-43b"/>
                             <constraint firstItem="yvk-rD-ClY" firstAttribute="top" secondItem="aAI-Fu-8AE" secondAttribute="bottom" constant="32" id="jHn-n3-NuE"/>
                             <constraint firstItem="yI0-qg-A1R" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="lnQ-bm-fsd"/>
@@ -198,6 +210,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Nqn-48-DDT" secondAttribute="trailing" constant="16" id="ohm-VY-ODg"/>
                             <constraint firstItem="M6J-uR-C4k" firstAttribute="top" secondItem="gp3-18-u7w" secondAttribute="bottom" constant="8" symbolic="YES" id="p2e-uU-k04"/>
                             <constraint firstItem="9ZE-SI-S0j" firstAttribute="top" secondItem="l6r-SI-YZx" secondAttribute="bottom" constant="8" symbolic="YES" id="pgS-Ip-hfe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Tmh-dg-BjZ" secondAttribute="trailing" constant="16" id="sBw-NQ-ub2"/>
                             <constraint firstItem="Nqn-48-DDT" firstAttribute="top" secondItem="bTS-lJ-doG" secondAttribute="bottom" constant="8" symbolic="YES" id="wVX-FQ-eaD"/>
                             <constraint firstItem="M6J-uR-C4k" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="zuB-xW-vOX"/>
                             <constraint firstItem="aAI-Fu-8AE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="zzK-lY-L5f"/>
@@ -231,6 +244,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

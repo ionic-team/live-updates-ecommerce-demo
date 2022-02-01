@@ -12,6 +12,9 @@ class SyncPageViewController: UIViewController {
     private var appIds: [String] = [profileAppId, helpAppId]
     private static let profileAppId: String = "186b544f"
     private static let helpAppId: String = "a81b2440"
+    private static let channelKey: String = "test-lu-channel"
+    private static let profileUIUpdatedKey: String = "profile-updated-time"
+    private static let helpUIUpdatedKey: String = "help-updated-time"
     
     private class LiveUpdateCallbacks: ISyncCallback {
         let profileUI: UILabel
@@ -31,13 +34,19 @@ class SyncPageViewController: UIViewController {
             if (id == SyncPageViewController.profileAppId) {
                 DispatchQueue.main.sync {
                     self.profileUI.text = "UPDATED"
-                    self.lastUpdatedProfileUI.text = Date().timeIntervalSince1970.description
+                    
+                    let time = Date().timeIntervalSince1970.description
+                    UserDefaults.standard.set(time, forKey: profileUIUpdatedKey)
+                    self.lastUpdatedProfileUI.text = time
                 }
             }
             else if (id == SyncPageViewController.helpAppId) {
                 DispatchQueue.main.sync {
                     self.helpUI.text = "UPDATED"
-                    self.lastUpdatedHelpUI.text = Date().timeIntervalSince1970.description
+                    
+                    let time = Date().timeIntervalSince1970.description
+                    UserDefaults.standard.set(time, forKey: helpUIUpdatedKey)
+                    self.lastUpdatedHelpUI.text = time
                 }
             }
         }
@@ -48,7 +57,16 @@ class SyncPageViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        activeChannel = UserDefaults.standard.string(forKey: SyncPageViewController.channelKey) ?? "Production"
         activeChannelUILabel.text = activeChannel
+        
+        let profileText = UserDefaults.standard.string(forKey: SyncPageViewController.profileUIUpdatedKey) ?? "N/A"
+        lastCheckProfileAppUILabel.text = profileText
+        profileAppUILabel.text = profileText == "N/A" ? "NOT UPDATED" : "UPDATED"
+        
+        let helpText = UserDefaults.standard.string(forKey: SyncPageViewController.helpUIUpdatedKey) ?? "N/A"
+        lastCheckHelpAppUILabel.text = helpText
+        helpAppUILabel.text = helpText == "N/A" ? "NOT UPDATED" : "UPDATED"
     }
     
     @IBAction func deleteLiveUpdates(_ sender: Any) {
@@ -72,10 +90,16 @@ class SyncPageViewController: UIViewController {
     @IBAction func setProductionAsActiveChannel(_ sender: Any) {
         activeChannel = "Production"
         activeChannelUILabel.text = activeChannel
+        UserDefaults.standard.set(activeChannel, forKey: SyncPageViewController.channelKey)
     }
     
     @IBAction func setDevelopmentAsActiveChannel(_ sender: Any) {
         activeChannel = "Development"
         activeChannelUILabel.text = activeChannel
+        UserDefaults.standard.set(activeChannel, forKey: SyncPageViewController.channelKey)
+    }
+    
+    @IBAction func resetNsUserDefaults(_ sender: Any) {
+        UserDefaults.resetStandardUserDefaults()
     }
 }

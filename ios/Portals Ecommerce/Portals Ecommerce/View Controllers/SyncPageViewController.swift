@@ -27,7 +27,7 @@ class SyncPageViewController: UIViewController {
         }
         
         func onAppComplete(_ liveUpdate: LiveUpdate, _ failStep: FailStep?) {
-            let id = liveUpdate.getAppId()
+            let id = liveUpdate.appId
             if (id == SyncPageViewController.profileAppId) {
                 DispatchQueue.main.sync {
                     self.profileUI.text = "UPDATED"

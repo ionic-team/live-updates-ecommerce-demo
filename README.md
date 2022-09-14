@@ -1,4 +1,6 @@
-# live-updates-ecommerce-demo
+# This repo is no longer updated. Please refer to [ionic-team/portals-ecommerce-demo](https://github.com/ionic-team/portals-ecommerce-demo/) instead. It includes live updates.
+
+## live-updates-ecommerce-demo
 E-commerce Demo App using Ionic Portals with Live Updates
 
 This is an example application built in iOS and Android. Both are using the same web resources for their Portals.
